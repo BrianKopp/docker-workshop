@@ -1,0 +1,7 @@
+{
+    "editor.formatOnSave": false,
+    "[typescript]": {
+      "editor.formatOnSave": true,
+      "editor.tabSize": 2
+    }
+}
