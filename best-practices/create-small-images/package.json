@@ -1,0 +1,15 @@
+{
+  "name": "create-small-images",
+  "version": "1.0.0",
+  "description": "This example is a hello world application that uses newrelic for instrumentation. When installing newrelic, it wants to have node-gpy, which requires python to be installed. Shipping a container image with python installed would make you sad, so instead, build your image using multiple commands in a single layer to clean up after yourself.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "newrelic": "^8.3.0"
+  }
+}
