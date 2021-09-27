@@ -5,5 +5,9 @@ services:
       context: .
       dockerfile: local.Dockerfile
     command: ["npm", "run", "start:watch"]
+    environment:
+    - LOG_LEVEL=debug
+    ports:
+    - 3000:3000
     volumes:
     - ./src:/app/src
