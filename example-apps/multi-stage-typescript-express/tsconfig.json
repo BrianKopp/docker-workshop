@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "target": "es2017",
+    "outDir": "dist",
+    "rootDir": "src",
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "declaration": true,
+    "inlineSourceMap": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "experimentalDecorators": true /* For tsyringe */,
+    "emitDecoratorMetadata": true /* For tsyringe */,
+
+    "lib": ["es2017", "dom"],
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules/**"]
+}
