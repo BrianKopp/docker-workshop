@@ -9,6 +9,7 @@
     "lint:fix": "eslint src --ext .ts --fix",
     "start:watch": "nodemon",
     "test": "jest",
+    "test:ci": "jest --ci",
     "test:watch": "jest --watch"
   },
   "keywords": [],

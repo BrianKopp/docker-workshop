@@ -24,6 +24,9 @@ RUN npm run build
 # Run linting
 RUN npm run lint
 
+# Run unit tests
+RUN npm run test:ci
+
 # Deploy stage
 FROM node:14.17.6-alpine
 
