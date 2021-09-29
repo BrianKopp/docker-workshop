@@ -9,7 +9,6 @@ It includes:
 * nodemon for hot-reloading
 * jest for testing
 * winston for logging
-* tsyringe for a dependency-injection
 
 It is largely based on the typescript starter found
 [here](https://github.com/bitjson/typescript-starter).

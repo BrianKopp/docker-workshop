@@ -1,24 +1,20 @@
-import 'reflect-metadata';
-import { createClient, RedisClient } from 'redis';
-import { container } from 'tsyringe';
-import { Logger } from 'winston';
+import { createClient } from 'redis';
 
-import { app } from './app';
+import { createApp } from './app';
 import { Items } from './items';
 import { makeLogger } from './logger';
 
-// register dependencies
 const logger = makeLogger(process.env.LOG_LEVEL);
-container.register<Logger>('Logger', { useValue: logger });
 
 // set up redis connection
 const redisClient = createClient({
   host: process.env.REDIS_HOST,
   port: Number.parseInt(process.env.REDIS_PORT || '6379'),
 });
-container.register(RedisClient.name, { useValue: redisClient });
 
-container.register(Items.name, { useClass: Items });
+const items = new Items(logger, redisClient);
+
+const app = createApp(logger, items);
 
 // set up the http server
 const port = Number.parseInt(process.env.PORT || '3000');
