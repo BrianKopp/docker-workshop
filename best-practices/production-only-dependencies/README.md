@@ -20,6 +20,6 @@ TODO after jest tests
 For now it's...
 
 ```txt
-prod-only-deps                       prod-only-deps   6d3eaafa98bf   21 seconds ago   121MB
-prod-only-deps                       dev-deps         44530a578a10   34 seconds ago   253MB
+prod-only-deps  prod-only-deps                   97164cfd94f9   52 seconds ago       123MB
+prod-only-deps  dev-deps                         9012d6a664b3   About a minute ago   283MB
 ```
