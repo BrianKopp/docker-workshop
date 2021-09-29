@@ -1,5 +1,8 @@
 version: '3'
 services:
+  # You will need to run docker-compose build any time you want to see changes in some
+  # files not in the src directory.
+  # E.g. when you add a package.json dependency or change a package.json script.
   app:
     build:
       context: .
@@ -7,7 +10,15 @@ services:
     command: ["npm", "run", "start:watch"]
     environment:
     - LOG_LEVEL=debug
+    - REDIS_HOST=redis
+    - REDIS_PORT=6379
     ports:
     - 3000:3000
     volumes:
     - ./src:/app/src
+    depends_on:
+    - redis
+  redis:
+    image: redis
+    ports:
+    - 6379:6379

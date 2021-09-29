@@ -1,17 +1,29 @@
 import 'reflect-metadata';
-import pino, { Logger } from 'pino';
+import { createClient, RedisClient } from 'redis';
 import { container } from 'tsyringe';
+import { Logger } from 'winston';
 
 import { app } from './app';
+import { Items } from './items';
+import { makeLogger } from './logger';
 
-const logger = pino({
-  level: process.env.LOG_LEVEL || 'info',
-});
+// register dependencies
+const logger = makeLogger(process.env.LOG_LEVEL);
 container.register<Logger>('Logger', { useValue: logger });
 
+// set up redis connection
+const redisClient = createClient({
+  host: process.env.REDIS_HOST,
+  port: Number.parseInt(process.env.REDIS_PORT || '6379'),
+});
+container.register(RedisClient.name, { useValue: redisClient });
+
+container.register(Items.name, { useClass: Items });
+
+// set up the http server
 const port = Number.parseInt(process.env.PORT || '3000');
 if (Number.isNaN(port)) {
-  logger.fatal('port is invalid', { port });
+  logger.error('port is invalid', { port });
   process.exit(1);
 }
 

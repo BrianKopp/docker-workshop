@@ -13,3 +13,12 @@ It includes:
 
 It is largely based on the typescript starter found
 [here](https://github.com/bitjson/typescript-starter).
+
+## API
+
+It has 3 API endpoints to get, add, and delete items from a set.
+The API is backed by redis.
+
+* `GET /items`
+* `POST /items`
+* `DELETE /items/:item`  
