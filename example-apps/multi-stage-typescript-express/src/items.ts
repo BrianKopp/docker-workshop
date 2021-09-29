@@ -1,15 +1,10 @@
 import { RedisClient } from 'redis';
-import { inject, injectable } from 'tsyringe';
 import { Logger } from 'winston';
 
-@injectable()
 export class Items {
   private redisSetKey: string;
 
-  constructor(
-    @inject('Logger') private logger: Logger,
-    @inject(RedisClient.name) private client: RedisClient
-  ) {
+  constructor(private logger: Logger, private client: RedisClient) {
     this.redisSetKey = 'somekey';
   }
 
