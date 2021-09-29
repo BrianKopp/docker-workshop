@@ -24,5 +24,27 @@ describe('Items test', () => {
     });
     const foundItems = await itemsDb.getItems();
     expect(foundItems).toEqual(['item_one', 'item_two']);
+    expect(redisMock.smembers).toHaveBeenCalledTimes(1);
+    expect(redisMock.smembers.mock.calls[0][0]).toEqual('somekey');
+  });
+
+  it('should set item', async () => {
+    redisMock.sadd.mockImplementationOnce((key, value, cb) => {
+      cb(null);
+    });
+    await itemsDb.addItem('foobar');
+    expect(redisMock.sadd).toHaveBeenCalledTimes(1);
+    expect(redisMock.sadd.mock.calls[0][0]).toEqual('somekey');
+    expect(redisMock.sadd.mock.calls[0][1]).toEqual('foobar');
+  });
+
+  it('should get items', async () => {
+    redisMock.srem.mockImplementationOnce((key, value, cb) => {
+      cb(null);
+    });
+    await itemsDb.deleteItem('foobar');
+    expect(redisMock.srem).toHaveBeenCalledTimes(1);
+    expect(redisMock.srem.mock.calls[0][0]).toEqual('somekey');
+    expect(redisMock.srem.mock.calls[0][1]).toEqual('foobar');
   });
 });
